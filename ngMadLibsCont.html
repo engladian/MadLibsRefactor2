@@ -15,40 +15,59 @@
                 <h1 style="text-align: center; margin-top: auto">Automate This!</h1>
             </div>
         </div>
-        <div class="row pagesection">
-            <h2 style="margin-left: 50px; margin-bottom: 0; margin-top: 50px;">
-                Provide the following words:
-            </h2>
-            <div class="col-sm-4 textboxcol">
-                <input type="text" ng-model="name" placeholder="name" class="form-control textbox2" />
-                <input type="text" ng-model="jobTitle" placeholder="job title" class="form-control textbox1" />
-                <input type="text" ng-model="tediousTask" placeholder="tedious task" class="form-control textbox2" />
+        <form name="madLibsForm" novalidate ng-submit="ShowStory()">
+            <div class="row pagesection" ng-hide="showStoryText">
+                <h2 style="margin-left: 50px; margin-bottom: 0; margin-top: 50px;">
+                    Provide the following words:
+                </h2>
+
+                <div class="col-sm-4 textboxcol">
+                    <input ng-class="nameClassCSS" type="text" ng-model="yourName" name="inputname" placeholder="the name" required />
+                    <input ng-class="jobClassCSS" type="text" ng-model="jobTitle" name="inputjobtitle" placeholder="job title" required />
+                    <input ng-class="tedTaskClassCSS" type="text" ng-model="tediousTask" name="inputtedtask" placeholder="tedious task" required />
+                </div>
+                <div class="col-sm-4 textboxcol">
+                    <input ng-class="dirtyTaskClassCSS" type="text" ng-model="dirtyTask" name="inputdirtytask" placeholder="dirty task" required/>
+                    <input ng-class="celebClassCSS" type="text" ng-model="celeb" name="inputceleb" placeholder="celebrity" required/>
+                    <input ng-class="uselessSkillClassCSS" type="text" ng-model="uselessSkill" name="inputuselessskill" placeholder="useless skill" required/>
+                </div>
+                <div class="col-sm-4 textboxcol">
+                    <input ng-class="obCelebClassCSS" type="text" ng-model="obnoxiousCeleb" name="inputobceleb" placeholder="obnoxiuos celebrity"  required/>
+                    <input ng-class="hugeNoClassCSS" type="text" ng-model="hugeNumber" name="inputhugenumber" placeholder="huge number" required/>
+                    <input ng-class="adjectiveClassCSS" type="text" ng-model="adjective" name="inputadjective" placeholder="adjective" required/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10 btnbox">
+                        <h2>
+                            <input type="submit" value="Generate My Mad Lib" style="float: right" />
+                        </h2>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-4 textboxcol">
-                <input type="text" ng-model="dirtyTask" placeholder="dirty task" class="form-control textbox1" />
-                <input type="text" ng-model="celeb" placeholder="celebrity" class="form-control textbox1" />
-                <input type="text" ng-model="uselessSkill" placeholder="useless skill" class="form-control textbox2" />
-            </div>
-            <div class="col-sm-4 textboxcol">
-                <input type="text" ng-model="obnoxiousCeleb" placeholder="obnoxiuos celebrity" class="form-control textbox3" />
-                <input type="text" ng-model="hugeNumber" placeholder="huge number" class="form-control textbox2" />
-                <input type="text" ng-model="adjective" placeholder="adjective" class="form-control textbox1" />
-            </div>
-        </div>
-        <div class="row pagesection">
+        </form>
+        <div class="row pagesection" ng-show="showStoryText">
             <p>
-                {{ name }} was a {{ jobTitle }} who loved technology.
+                {{ yourName }} was a {{ jobTitle }} who loved technology.
                 Although he loved parts of his job, he absolutely
                 hated  {{ tediousTask }} and {{ dirtyTask }}.
-                So, {{ name }} met with his life mentor {{ celeb }} who told him to learn how
+                So, {{ yourName }} 8 with his life mentor {{ celeb }} who told him to learn how
                 to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }}
                 so he studied programming instead.
             </p>
             <p style="margin-bottom: 50px;">
-                What a great decision! With his new skills, {{ name }} built a(n) {{ adjective }} robot
+                What a great decision! With his new skills, {{ yourName }} built a(n) {{ adjective }} robot
                 named {{ obnoxiousCeleb }} that not only loved {{ dirtyTask }}
                 but did it {{ hugeNumber | number }} times faster.
             </p>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 btnbox">
+                    <h2>
+                        <input type="submit" ng-click="StartOver()" value="Start Over" style="float: right" />
+                    </h2>
+                </div>
+            </div>
         </div>
     </div>
     <script src="./js/jquery-2.1.4.min.js"></script>
