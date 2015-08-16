@@ -22,25 +22,28 @@
                 </h2>
 
                 <div class="col-sm-4 textboxcol">
-                    <input ng-class="nameClassCSS" type="text" ng-model="yourName" name="inputname" placeholder="the name" required />
-                    <input ng-class="jobClassCSS" type="text" ng-model="jobTitle" name="inputjobtitle" placeholder="job title" required />
-                    <input ng-class="tedTaskClassCSS" type="text" ng-model="tediousTask" name="inputtedtask" placeholder="tedious task" required />
+                    <input type="text" ng-model="data.yourName" name="inputname" placeholder="the name" ng-pattern="/^abc$/" required />
+                    <div ng-if="submitted && madLibsForm.inputname.$error.required" class="error">the name is required!</div>
+                    <div ng-if="submitted && madLibsForm.inputname.$error" class="error">there is an error!!</div>
+
+                    <input type="text" ng-model="data.jobTitle" name="inputjobtitle" placeholder="job title" required />
+                    <input type="text" ng-model="data.tediousTask" name="inputtedtask" placeholder="tedious task" required />
                 </div>
                 <div class="col-sm-4 textboxcol">
-                    <input ng-class="dirtyTaskClassCSS" type="text" ng-model="dirtyTask" name="inputdirtytask" placeholder="dirty task" required/>
-                    <input ng-class="celebClassCSS" type="text" ng-model="celeb" name="inputceleb" placeholder="celebrity" required/>
-                    <input ng-class="uselessSkillClassCSS" type="text" ng-model="uselessSkill" name="inputuselessskill" placeholder="useless skill" required/>
+                    <input type="text" ng-model="data.dirtyTask" name="inputdirtytask" placeholder="dirty task" required/>
+                    <input type="text" ng-model="data.celeb" name="inputceleb" placeholder="celebrity" required/>
+                    <input type="text" ng-model="data.uselessSkill" name="inputuselessskill" placeholder="useless skill" required/>
                 </div>
                 <div class="col-sm-4 textboxcol">
-                    <input ng-class="obCelebClassCSS" type="text" ng-model="obnoxiousCeleb" name="inputobceleb" placeholder="obnoxiuos celebrity"  required/>
-                    <input ng-class="hugeNoClassCSS" type="text" ng-model="hugeNumber" name="inputhugenumber" placeholder="huge number" required/>
-                    <input ng-class="adjectiveClassCSS" type="text" ng-model="adjective" name="inputadjective" placeholder="adjective" required/>
+                    <input type="text" ng-model="data.obnoxiousCeleb" name="inputobceleb" placeholder="obnoxiuos celebrity"  required/>
+                    <input type="text" ng-model="data.hugeNumber" name="inputhugenumber" placeholder="huge number" required/>
+                    <input type="text" ng-model="data.adjective" name="inputadjective" placeholder="adjective" required/>
                 </div>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 btnbox">
                         <h2>
-                            <input type="submit" value="Generate My Mad Lib" style="float: right" />
+                            <input ng-click="submit()" type="submit" value="Generate My Mad Lib" style="float: right" />
                         </h2>
                     </div>
                 </div>
@@ -48,23 +51,23 @@
         </form>
         <div class="row pagesection" ng-show="showStoryText">
             <p>
-                {{ yourName }} was a {{ jobTitle }} who loved technology.
+                {{data.yourName }} was a {{data.jobTitle }} who loved technology.
                 Although he loved parts of his job, he absolutely
-                hated  {{ tediousTask }} and {{ dirtyTask }}.
-                So, {{ yourName }} 8 with his life mentor {{ celeb }} who told him to learn how
-                to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }}
+                hated  {{data.tediousTask }} and {{data.dirtyTask }}.
+                So, {{data.yourName }} 8 with his life mentor {{data.celeb }} who told him to learn how
+                to {{data.uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{data.uselessSkill }}
                 so he studied programming instead.
             </p>
             <p style="margin-bottom: 50px;">
-                What a great decision! With his new skills, {{ yourName }} built a(n) {{ adjective }} robot
-                named {{ obnoxiousCeleb }} that not only loved {{ dirtyTask }}
-                but did it {{ hugeNumber | number }} times faster.
+                What a great decision! With his new skills, {{data. yourName }} built a(n) {{data.adjective }} robot
+                named {{data.obnoxiousCeleb }} that not only loved {{data. dirtyTask }}
+                but did it {{data.hugeNumber | number }} times faster.
             </p>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10 btnbox">
                     <h2>
-                        <input type="submit" ng-click="StartOver()" value="Start Over" style="float: right" />
+                        <input type="submit" ng-click="reset()" value="Start Over" style="float: right" />
                     </h2>
                 </div>
             </div>
